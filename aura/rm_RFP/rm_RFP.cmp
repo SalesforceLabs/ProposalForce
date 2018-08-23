@@ -1,0 +1,82 @@
+<aura:component access="global">
+
+  <aura:attribute name="state" type="Map" />
+
+  <aura:handler name="change" value="{!v.state.selectedQuestionId}" action="{!c.refreshFeed}" />
+  <aura:handler name="init" value="{!this}" action="{!c.init}" />
+
+
+  <aura:registerEvent name="rm_rfp_action" type="c:rm_rfp_action" />
+
+  <div class="slds-scope slds-box">
+    <div class="col">
+      <lightning:tabset >
+
+        <!-- search tab -->
+        <lightning:tab label="Search">
+          <div class="search-container slds-m-bottom_small">
+            <lightning:textarea class="search-box" name="searchInput" value="{!v.state.query}" label="Enter the question or terms you'd like to query."
+            />
+            <c:rm_rfp_filters state="{!v.state}" />
+            <div class="slds-m-top_medium button-container">
+              <lightning:button variant="brand" label="Search Knowledge Base" onclick="{! c.searchResponses }" />
+            </div>
+            <div class="slds-m-top_medium">
+              <div class="response-cards">
+                <ul class="slds-has-dividers_around-space response">
+                  <aura:iteration items="{!v.state.knowledgeArticles}" var="art">
+                      <li class="slds-item response-item" data-id="{!art.Id}" onclick="{!c.setSelectedResponse}">
+                        <article class="slds-tile slds-tile_board">
+                          <div class="slds-tile__detail">
+                            <ui:outputRichText class="slds-text-body_small" value="{!art.Answer__c}" />
+                          </div>
+                        </article>
+                        <div>
+                          <lightning:buttonIcon iconName="utility:edit" title="Create a new draft of this article." value="{! art.KnowledgeArticleId + '|' + art.Id }"
+                          variant="bare" alternativeText="Edit" iconClass="dark" onclick="{! c.editArticle }" />
+                        </div>
+                      </li>
+                  </aura:iteration>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </lightning:tab>
+
+        <!-- categry pills tab -->
+        <lightning:tab label="Filters">
+          <c:rm_rfp_pillBox state="{!v.state}" />
+        </lightning:tab>
+
+        <!-- categry tree tab -->
+        <lightning:tab label="Filter Tree">
+          <ul>
+            <aura:iteration items="{!v.state.categoryPills}" var="pill">
+              <aura:if isTrue="{! pill.selected }">
+                <li class="slds-text-title_caps slds-m-bottom_small breadcrumb" >
+                  <div onclick="{!c.breadcrumbClicked}" data-name="{! pill.name }">
+                    <lightning:icon iconName="utility:close" size="xx-small" class="slds-m-right_small close" />
+                  </div>
+                  <a href="javascript:void(0);">{! pill.title }</a>
+                </li>
+              </aura:if>
+            </aura:iteration>
+          </ul>
+          <lightning:tree items="{! v.state.categoryTrees }" header="Categories" onselect="{! c.treeBranchSelection }" />
+
+        </lightning:tab>
+
+        <!-- chatter tab -->
+        <aura:if isTrue="{!v.state.selectedQuestionId}">
+          <lightning:tab label="Chatter">
+            <div class="feed">
+              {!v.body}
+            </div>
+          </lightning:tab>
+        </aura:if>
+      </lightning:tabset>
+    </div>
+
+  </div>
+
+</aura:component>

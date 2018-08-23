@@ -1,0 +1,27 @@
+<aura:component >
+  <aura:attribute name="state" type="Map" />
+  <aura:registerEvent name="rm_rfp_action" type="c:rm_rfp_action" />
+
+  <div class="selected-pill-container">
+    <aura:iteration items="{!v.state.categoryPills}" var="pill">
+      <aura:if isTrue="{! pill.selected }">
+        <lightning:pill label="{! pill.label}" name="{! pill.name }" onremove="{!c.pillClick}" title="{! pill.title}"/>
+      </aura:if>
+    </aura:iteration>
+  </div>
+
+  <div class="pill-search">
+    <lightning:input aura:id="search-input" type="search" label="Add Categories" name="pill search" onchange="{!c.searchPills}"
+    />
+  </div>
+
+  <div class="pill-container">
+    <aura:iteration items="{!v.state.categoryPills}" var="pill">
+      <aura:if isTrue="{! pill.searchHit }">
+        <lightning:pill aura:id="categoryPill" label="{! pill.label}" name="{! pill.name }" onclick="{!c.searchPillClick}" title="{! pill.title}"/>
+      </aura:if>
+
+    </aura:iteration>
+  </div>
+
+</aura:component>

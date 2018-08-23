@@ -1,0 +1,62 @@
+<aura:component access="global">
+
+  <aura:attribute name="state" type="Map" />
+  <aura:attribute name="RFPSearchHits" type="List" default="[]"/>
+  <aura:attribute name="options" type="list" default="[{'label': 'Name', 'value': 'Name'}, {'label': 'Most Recent', 'value': 'MostRecent'},{'label': 'Least Recent', 'value': 'LeastRecent'}, {'label': 'Most Complete', 'value': 'MostComplete'}, {'label': 'Least Complete', 'value': 'LeastComplete'} ]"
+  />
+
+  <aura:handler name="init" value="{!this}" action="{!c.init}" />
+
+  <aura:registerEvent name="rm_rfp_action" type="c:rm_rfp_action" /> 
+  <aura:method name="toggleOpen" action="{!c.toggleOpen}" access="public" />
+
+  <div class="slds-scope">
+    <section tabindex="-1" aura:id="modal" class="slds-modal">
+      <div class="slds-modal__container">
+
+        <header class="slds-modal__header">
+          <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick="{!c.toggleOpen}">
+            <lightning:icon iconName="utility:close" size="small" class="icon" />
+            <span class="slds-assistive-text">Close</span>
+          </button>
+          <h2 class="slds-text-heading_medium slds-hyphenate"> {!v.body} RFP Search and Sort
+          </h2>
+        </header>
+
+        <div class="slds-modal__content slds-p-around_medium">
+          <div class="add-container">
+            <div class="slds-form-element slds-size_2-of-3 search">
+              <label class="slds-form-element__label">Bring RFP to the top</label>
+              <div class="slds-form-element__control">
+                <input aura:id="rfp-search" type="text" class="slds-input" onkeyup="{!c.handleSearch}" />
+              </div>
+
+              <ul class="slds-m-vertical_small">
+                <aura:iteration items="{!v.RFPSearchHits}" var="hit">
+                  <li class="search-hit">
+                    <button data-hitid="{! hit.Id }" onclick="{!c.removeHit}" class="slds-button slds-button_icon slds-button_icon-inverse close-icon"
+                      title="Close">
+                      <lightning:icon iconName="utility:close" size="x-small" class="close-icon" />
+                      <span class="slds-assistive-text">Close</span>
+                    </button>
+                    {! hit.Name }
+                  </li>
+                </aura:iteration>
+              </ul>
+
+              <lightning:radioGroup aura:id="sort" name="sortRadios" label="Sort RFPs By" options="{! v.options }" />
+            </div>
+          </div>
+        </div>
+
+        <footer class="slds-modal__footer">
+          <button class="slds-button slds-button_neutral" onclick="{!c.toggleOpen}">Cancel</button>
+          <button class="slds-button slds-button_brand" onclick="{!c.handleSave}">Save</button>
+        </footer>
+
+      </div>
+    </section>
+    <div aura:id="backdrop" class="slds-backdrop"></div>
+  </div>
+
+</aura:component>

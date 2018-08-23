@@ -1,0 +1,50 @@
+<aura:component access="global">
+
+
+  <aura:attribute name="state" type="Map" />
+  <aura:attribute name="originalResponse" type="String" />
+
+  <aura:handler name="init" value="{!this}" action="{!c.init}" />
+  <aura:method name="focus" action="{!c.focus}" access="public" />
+  <aura:registerEvent name="rm_rfp_action" type="c:rm_rfp_action" />
+
+
+  <aura:handler name="change" value="{!v.state.selectedResponse.Answer__c}" action="{!c.warnIfUnsavedChanges}" />
+
+  <div class="slds-scope " aura:id="edit-container">
+    <div class="col">
+
+      <div class="response-detail">
+        <lightning:select aura:id="complianceAnswer" name="ComplianceResponse" label="Compliance Response" class="slds-size_1-of-3">
+          <option></option>
+          <aura:iteration items="{!v.state.selectedComplianceResponses}" var="res">
+            <option>{! res }</option>
+          </aura:iteration>
+        </lightning:select>
+
+        <label class="slds-form-element__label slds-m-top_small">
+          <span>Response Text</span>
+        </label>
+        <div id="resp" aura:id="ResponseDetail">
+          <lightning:inputRichText class="rich-text" aura:id="richTextInput" value="{!v.state.selectedResponse.Answer__c}" />
+        </div>
+      </div>
+
+      <div class="buttons row  slds-m-top_small">
+
+        <div class="buttons row  slds-m-top_small">
+          <lightning:icon iconName="utility:warning" size="small" class="slds-hide warning" aura:id="warning" title="Unsaved changes to the response."/>
+          <div>
+            <lightning:button variant="neutral" label="Save Response" onclick="{! c.setResponse }" />
+          </div>
+          <div>
+            <lightning:button variant="neutral" label="Create Article" onclick="{! c.createArticle }" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+</aura:component>

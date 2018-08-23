@@ -1,0 +1,20 @@
+<aura:component controller="RFP_MainController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,forceCommunity:availableForAllPageTypes"
+  access="global">
+  <aura:attribute name="state" type="map" default="{RFPs: [], questions:[], responses:[]}"/>
+  
+  <!-- TODO: Implement undo -->
+  <!-- <aura:attribute name="states" type="List" default="[]"/>
+  <aura:attribute name="lastStateIdx" type="integer" default="-1"/> -->
+
+  <aura:registerEvent name="rm_rfp_action" type="c:rm_rfp_action" />
+  <aura:handler name="rm_rfp_action" event="c:rm_rfp_action" action="{!c.handleAction}" />
+
+   <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+
+  <div class="slds-scope">
+    <lightning:workspaceAPI aura:id="workspace" />
+    {!v.body}
+    <c:rm_rfp_questionList state="{!v.state}" aura:id="questionList"/>
+  </div>
+
+</aura:component>

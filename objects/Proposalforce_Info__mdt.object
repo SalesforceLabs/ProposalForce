@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Knowledge_Object_Name__c</fullName>
+        <defaultValue>&apos;Knowledge__kav&apos;</defaultValue>
+        <deprecated>false</deprecated>
+        <description>The api name of the knowledge object in this org without the namespace. The default is Knowledge__kav.</description>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <inlineHelpText>The api name of the knowledge object in this org without the namespace. The default is Knowledge__kav.</inlineHelpText>
+        <label>Knowledge Object Name</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>className__c</fullName>
+        <defaultValue>&quot;proposal_force_getDataCategories&quot;</defaultValue>
+        <deprecated>false</deprecated>
+        <description>If you have used the class in the github repo linked in the documentation you do not need to change this setting.
+If you have implemented the class with a different name set the class name here.</description>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <inlineHelpText>If you have used the class in the github repo linked in the documentation you do not need to change this setting.
+If you have implemented the class with a different name set the class name here.</inlineHelpText>
+        <label>className</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Proposalforce Info</label>
+    <pluralLabel>Proposalforce Info</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

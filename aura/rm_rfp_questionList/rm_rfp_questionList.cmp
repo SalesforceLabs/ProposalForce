@@ -1,0 +1,98 @@
+<aura:component access="global">
+  <aura:handler name="init" value="{!this}" action="{!c.init}" />
+
+
+  <aura:attribute name="state" type="Map" />
+
+  <aura:registerEvent name="rm_rfp_action" type="c:rm_rfp_action" />
+  <aura:handler name="render" value="{!this}" action="{!c.render}" />
+
+
+  <div class="slds-scope slds-m-top_medium">
+    <c:rm_rfp_searchAndSortRFPs aura:id="search-modal" state="{!v.state}" />
+    <aura:if isTrue="{!v.state.selectedRfpId}"> 
+      <c:rm_rfp_settingsPanel aura:id="settings-modal" state="{!v.state}" />
+    </aura:if>
+    <div class="row outer">
+      {! v.body }
+      <div class="col questions">
+        <div class="slds-vertical-tabs">
+          <ul aura:id="vertical-nav" class="slds-vertical-tabs__nav" role="tablist" aria-orientation="vertical">
+            <li class="slds-vertical-tabs__nav-item nav-heading" onclick="{!c.collapseList}" role="presentation">
+              <div class="slds-vertical-tabs__link" role="tab" tabindex="0" aria-selected="true" aria-controls="slds-vertical-tabs-0">
+                <div class="row rfp-title">
+                  <lightning:icon aura:id="nav-icon" class="nav-icon" iconName="utility:chevronleft" size="small" />
+                  <div class="slds-text-heading_small" aura:id="rfp">RFPs</div>
+                  <div class="search-icon-container" data-name="searchicon" onclick="{!c.showSearch}">
+                    <lightning:buttonIcon variant="border-filled" aura:id="search-icon" class="search-icon" iconName="utility:search" size="medium"
+                    />
+                  </div>
+                </div>
+              </div>
+            </li>
+            <aura:iteration items="{!v.state.visibleRFPs}" var="rfp">
+              <li aura:id="rfp" class="slds-vertical-tabs__nav-item rfp-item" data-id="{!rfp.Id}" title="{!rfp.Name}" role="presentation">
+                <li data-id="{!rfp.Id}" title="{!rfp.Name}" onclick="{!c.setSelectedRfp}">
+                  <a class="slds-vertical-tabs__link" href="javascript:void(0)" role="tab" aria-selected="true" aria-controls="slds-vertical-tabs-0">
+                    {!rfp.Name}
+                  </a>
+                </li>
+                <div class="{! 'filters-container ' + (v.state.selectedRfpId == rfp.Id ? '' : 'hidden')}" onchange="{!c.changeStatusFilter}">
+                  <lightning:input aura:id="filter" type="checkbox" label="My Questions" name="myQuestions" />
+                  <lightning:input aura:id="filter" type="checkbox" label="New" name="New" />
+                  <lightning:input aura:id="filter" type="checkbox" label="Draft" name="Draft" />
+                  <lightning:input aura:id="filter" type="checkbox" label="Approved" name="Approved" />
+                </div>
+                <lightning:progressBar value="{! rfp.proposalforce__Completion_Percentage__c }" />
+              </li>
+            </aura:iteration>
+          </ul>
+          <div class="slds-vertical-tabs__content slds-show" id="slds-vertical-tabs-0" role="tabpanel" aria-labelledby="slds-vertical-tabs-0__nav">
+            <div class="slds-text-longform accordion">
+              <ul class="slds-accordion">
+                <div class="row slds-m-bottom_medium">
+                  <div class="slds-text-heading_medium">Questions</div>
+                  <div class="row">
+                    <aura:if isTrue="{!v.state.selectedRfpId}">
+                      <div onclick="{!c.showSettingsModal}">
+                        <lightning:icon aura:id="settings-icon" class="settings-icon" iconName="utility:settings" size="small" />
+                      </div>
+                    </aura:if>
+                  </div>
+                </div>
+                <aura:if isTrue="{!v.state.selectedRfpId == null}">
+                  <div class="slds-box">
+                    <lightning:icon iconName="utility:back" size="small" />
+                    <div class="slds-text-heading_medium slds-text-align_center">
+                      Click an RFP on the left to see its questions.
+                    </div>
+                    <img alt="Astro Looking" src="{! $Resource.AstroLooking }" title="Astro Looking" class="astro-looking" />
+                    <div class="slds-text-heading_medium slds-text-align_center right-text">
+                      Search and filter relevant knowledge articles on the right.
+                    </div>
+                    <div class="slds-text-heading_medium slds-text-align_center down-text">
+                      Search and filter relevant knowledge articles below.
+                    </div>
+                    <div class="right-arrow-container">
+                      <lightning:icon iconName="utility:forward" size="small" class="right-arrow" />
+                    </div>
+                  </div>
+                </aura:if>
+                <aura:iteration items="{!v.state.questions}" var="question">
+                  <div aura:id="accordionItemContainer">
+                    <c:rm_rfp_accordionItem question="{#question}" state="{!v.state}" />
+                  </div>
+                </aura:iteration>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col responses">
+        <c:rm_RFP state="{!v.state}" />
+      </div>
+
+    </div>
+  </div>
+
+</aura:component>

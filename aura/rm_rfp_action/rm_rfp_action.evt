@@ -1,0 +1,4 @@
+<aura:event type="component" >
+    <aura:attribute name="type" type="String"/>
+    <aura:attribute name="payload" type="Map"/>
+</aura:event>

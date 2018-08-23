@@ -1,0 +1,21 @@
+<aura:component controller="RFP_MainController" implements="force:hasRecordId,force:lightningQuickAction"
+  access="global">
+  <aura:attribute name="error" type="String" default="" />
+  <aura:attribute name="fileId" type="String" default="" />
+
+  <ltng:require scripts="{!join(',', $Resource.jsZip, $Resource.docxtemplater, $Resource.jsZipUtils)}" afterScriptsLoaded="{!c.scriptsLoaded}"
+  />
+  <div class="slds-scope">
+    <div class="spinner">
+      <lightning:spinner variant="brand" size="large" aura:id="spinner" class="slds-hide" alternativeText="building document"/>
+    </div>
+    <aura:if isTrue="{!v.error != '' }">
+      <div class="slds-text-heading_medium">There was an error: </div>
+      <div class="slds-text-heading_medium">{! v.error }</div>
+    </aura:if>
+    <aura:if isTrue="{!v.fileId != '' }">
+      <lightning:fileCard fileId="{!v.fileId}"/>
+    </aura:if>
+  </div>
+
+</aura:component>

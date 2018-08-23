@@ -1,0 +1,82 @@
+.THIS {
+	max-width: 75vw;
+	/* height: 80vh; */
+	height: calc(100vh - 11.75rem);
+	margin: auto;
+	background-color: white;
+	/* overflow-y: scroll; */
+	overflow-y: auto;
+}
+
+.THIS .response-item {
+	cursor: pointer;
+	height: 68px;
+	overflow: hidden;
+	margin-right: 0.5rem;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.THIS .response-item:hover {
+	background-color: #f9f9f9;
+}
+
+.THIS .row {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+.THIS .col {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.THIS .hidden {
+	height: 0;
+	opacity: 0;
+}
+
+.THIS .search-box textarea {
+	height: 15vh;
+}
+
+.THIS .button-container .slds-button {
+	margin-left: unset;
+	margin-right: 0.25rem;
+	margin-top: 0.25rem;
+}
+
+.THIS .feed {
+	margin-top: 0.5rem;
+	max-height: 71vh;
+	overflow: hidden;
+}
+
+.THIS .feed .slds-card-wrapper.forceChatterFeedInner.cuf-wide-feed {
+	margin-top: 0.5rem;
+	max-height: 56vh;
+}
+
+.THIS .slds-tree [role='treeitem'][aria-selected='true'] > .slds-tree__item {
+	background: rgba(0, 112, 210, 0.1);
+	box-shadow: rgba(0, 112, 210, 1) 4px 0 0 inset;
+}
+
+.THIS .breadcrumb a:hover {
+	color: rgb(0, 112, 210);
+	cursor: initial;
+	text-decoration: none;
+}
+
+.THIS .breadcrumb {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+.THIS .breadcrumb .close {
+	cursor: pointer;
+}

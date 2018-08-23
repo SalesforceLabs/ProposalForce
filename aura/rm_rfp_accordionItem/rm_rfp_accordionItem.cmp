@@ -1,0 +1,64 @@
+<aura:component >
+
+  <aura:attribute name="question" type="RFP_Question__c" />
+  <aura:attribute name="state" type="Map" />
+
+  <aura:registerEvent name="rm_rfp_action" type="c:rm_rfp_action" />
+
+  <aura:handler name="init" value="{!this}" action="{!c.init}" />
+  <aura:handler name="render" value="{!this}" action="{!c.render}" />
+
+  <li data-questionIdx="{!v.question.Id}" class="{!'slds-accordion__list-item ' + (v.state.selectedQuestionId == v.question.Id ? 'slds-is-open' : '')}"
+    aura:id="accordionItem">
+    <section class="slds-accordion__section">
+      <div class="slds-accordion__summary">
+        <h3 class="slds-text-heading_small slds-accordion__summary-heading">
+          <button aria-controls="accordion-details-01" aria-expanded="true" class="slds-button slds-button_reset slds-accordion__summary-action"
+            onclick="{!c.setSelectedQuestion}">
+            <aura:if isTrue="{!v.state.selectedQuestionId == v.question.Id}">
+              <lightning:icon iconName="utility:switch" size="x-small" class="accordion-arrow" />
+              <aura:set attribute="else">
+                <lightning:icon iconName="utility:chevronright" size="x-small" class="accordion-arrow" />
+              </aura:set>
+            </aura:if>
+            <div>
+              <div class="{!v.question.proposalforce__Status__c + ' status'}" />
+            </div>
+            <span class="summary" title="Accordion summary">{!v.question.summary}&nbsp;</span>
+          </button>
+        </h3>
+      </div>
+      <div aria-hidden="false" class="slds-accordion__content">
+
+        <lightning:tile label="" href="" >
+          <div class="slds-tile__detail">
+            <dl class="slds-list_horizontal slds-wrap">
+              <dt class="slds-item_label slds-text-color_weak slds-truncate" title="First Label">
+                Question
+              </dt>
+              <dd class="slds-item_detail" title="Description for first label">
+                {!v.question.proposalforce__RFP_Question_Text__c}
+              </dd>
+            </dl>
+            <aura:if isTrue="{!v.state.selectedQuestionId == v.question.Id}">
+              <c:rm_rfp_editResponse state="{!v.state}" />
+            </aura:if>
+          </div>
+        </lightning:tile>
+      </div>
+    </section>
+
+    <lightning:buttonMenu alternativeText="Toggle menu" class="menuButton" onselect="{! c.handleMenuSelect }">
+      <aura:if isTrue="{!v.question.proposalforce__Status__c == 'Draft' }">
+        <lightning:menuItem label="Approve Response" value="updateQuestionStatus" iconName="utility:check" />
+      </aura:if>
+      <lightning:menuItem label="View RFP Detail" value="{!v.question.proposalforce__RFP__c}" iconName="utility:description" />
+      <lightning:menuItem label="View Question Detail" value="{!v.question.Id}" iconName="utility:description" />
+      <aura:if isTrue="{!v.question.proposalforce__RFP_Response__r.Id != null }">
+        <lightning:menuItem label="View Response Detail" value="{!v.question.proposalforce__RFP_Response__r.Id}" iconName="utility:description"
+        />
+      </aura:if>
+
+    </lightning:buttonMenu>
+  </li>
+</aura:component>

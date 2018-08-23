@@ -1,0 +1,28 @@
+.THIS .focus .slds-pill__action {
+	outline: 0;
+	border-color: rgb(21, 137, 238);
+	box-shadow: 0 0 3px #0070d2;
+}
+
+.THIS .slds-pill {
+	margin: 0.125rem 0.3rem;
+	cursor: pointer;
+}
+
+.THIS {
+	max-height: 65vh;
+	overflow-y: auto;
+	overflow-y: auto;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.THIS.pill-container .slds-pill__remove {
+	display: none;
+}
+
+.THIS.pill-container .slds-pill .slds-pill__action {
+	padding-right: 0.25rem;
+	padding-left: 0.25rem;
+}

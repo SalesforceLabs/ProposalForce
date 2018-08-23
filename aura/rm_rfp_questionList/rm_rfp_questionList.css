@@ -1,0 +1,203 @@
+.THIS {
+	height: 70vh;
+}
+
+.THIS .collapsed-nav.slds-vertical-tabs__nav {
+	width: 3rem;
+	min-width: 3rem;
+	overflow: hidden;
+}
+
+.THIS .slds-vertical-tabs {
+	overflow: unset;
+	height: calc(100vh - 11.75rem);
+}
+
+.THIS .slds-vertical-tabs__nav,
+.THIS .nav-icon,
+.THIS .slds-vertical-tabs__nav-item {
+	transition: 600ms cubic-bezier(0.63, -0.34, 0.69, 0.87);
+}
+
+.THIS .slds-vertical-tabs__nav {
+	overflow: auto;
+	height: calc(100vh - 11.75rem);
+	min-width: 12rem;
+	padding-bottom: 2.75rem;
+}
+
+.THIS .slds-vertical-tabs__content {
+	will-change: transform;
+}
+
+.THIS .flip-nav {
+	transform: rotateZ(180deg);
+}
+.THIS .slide-out {
+	transform: translateX(-15rem);
+}
+
+.THIS .settings-icon:hover {
+	transform: rotateZ(360deg);
+}
+
+.THIS .settings-icon {
+	cursor: pointer;
+	transition: transform 2s ease-in-out;
+	margin-right: 1.25rem;
+}
+
+.THIS .search-icon:hover svg {
+	fill: #1b5297;
+}
+
+.THIS li {
+	list-style: none;
+	list-style: none;
+}
+
+.THIS .row {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.THIS .rfp-title {
+	justify-content: flex-start;
+	line-height: unset;
+	align-items: center;
+}
+.THIS .rfp-title .slds-text-heading_small {
+	line-height: unset;
+	margin-left: 1rem;
+}
+
+.THIS .questions {
+	margin-right: 1rem;
+	width: 60vw;
+}
+
+.THIS .responses {
+	width: 38vw;
+}
+
+.THIS .accordion {
+	height: calc(80vh - 2.1rem);
+	overflow-y: auto;
+}
+
+.THIS .accordion-section {
+	max-width: 40vw;
+}
+
+.THIS .header {
+	background-color: white;
+}
+
+.THIS .rfp-header {
+	width: 12rem;
+	margin-right: 0.5rem;
+}
+
+.THIS .questions-header {
+	width: calc(60vw - 12rem);
+	margin-right: 1rem;
+}
+
+.THIS .responses-header {
+	width: 38vw;
+}
+
+.THIS .slds-is-open .slds-accordion__summary {
+	margin-bottom: 0.75rem;
+}
+
+.THIS .slds-is-open .slds-accordion__content {
+	overflow: visible;
+	visibility: visible;
+	opacity: 1;
+	height: auto;
+}
+
+.THIS .cRm_RFP .slds-rich-text-editor__textarea {
+	min-height: unset;
+	max-height: 180px;
+}
+
+.THIS .accordion-arrow {
+	margin-right: 0.5rem;
+}
+
+.THIS .hidden {
+	display: none;
+}
+
+.THIS .filters-container {
+	margin-left: 1rem;
+	margin-bottom: 0.5rem;
+}
+
+.THIS .nav-heading {
+	cursor: pointer;
+}
+.THIS .search-icon {
+	cursor: pointer;
+}
+.THIS .search-icon-container {
+	margin-left: auto;
+}
+
+.THIS .astro-looking {
+	margin: auto;
+	display: block;
+	max-height: 25vh;
+}
+
+.THIS .right-arrow-container {
+	display: flex;
+	flex-direction: row;
+}
+.THIS .right-arrow {
+	margin-left: auto;
+}
+
+.THIS .down-text{
+  display: none;
+}
+
+.THIS .right-text{
+  display: initial;
+}
+
+@media only screen and (max-width: 882px) {
+	.THIS .row.outer {
+		flex-direction: column;
+	}
+
+	.THIS .row.outer > .col.responses {
+		width: unset;
+	}
+	.THIS .row.outer > .col.questions {
+		margin-right: unset;
+		width: unset;
+		margin-bottom: 0.25rem;
+	}
+	.THIS .row.outer > .col.responses .proposalforceRm_RFP {
+		max-width: unset;
+		height: 50vh;
+		margin-bottom: 0.25rem;
+  }
+  
+  .THIS .down-text{
+    display: initial;
+  }
+  .THIS .right-text{
+    display: none;
+  }
+
+	
+	.THIS .right-arrow {
+    transform: rotateZ(90deg);
+    margin: auto;
+	}
+}

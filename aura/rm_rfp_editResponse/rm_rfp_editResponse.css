@@ -1,0 +1,71 @@
+.THIS {
+	max-width: 75vw;
+	margin: auto;
+	background-color: white;
+	/* height: 58vh; */
+}
+
+.THIS .language-picker-container > div {
+	width: 6rem;
+}
+
+.THIS .response-item {
+	cursor: pointer;
+}
+
+.THIS .response-item:hover {
+	background-color: #f9f9f9;
+}
+
+.THIS .row {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+.THIS .col {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.THIS .buttons {
+	justify-content: flex-start;
+}
+.THIS .buttons button {
+	margin-bottom: 0.25rem;
+}
+.THIS .buttons div {
+	margin-right: 0.25rem;
+}
+
+.THIS .hidden {
+	height: 0;
+	opacity: 0;
+}
+
+.THIS .rich-text .slds-rich-text-editor__toolbar > .slds-grid {
+	flex-wrap: wrap;
+}
+
+.THIS .slds-rich-text-editor__textarea,
+.THIS .slds-rich-text-editor {
+	height: 44vh;
+	max-height: unset;
+}
+.THIS .slds-rich-text-area__content {
+	height: 35vh;
+	max-height: unset;
+}
+.THIS .slds-rich-text-editor__textarea {
+	overflow: hidden;
+}
+
+.THIS .warning {
+  align-self: center;
+  margin-right: .25rem;
+}
+.THIS .warning svg {
+	fill: #eccc1d;
+}

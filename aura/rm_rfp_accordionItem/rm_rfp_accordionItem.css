@@ -1,0 +1,64 @@
+.THIS .slds-accordion__section.slds-is-open {
+	min-height: CALC(71vh - 1rem);
+}
+.THIS .slds-accordion__section {
+	padding-right: 0.75rem;
+}
+.THIS .menuButton {
+	margin-right: 1rem;
+	margin-top: 0.5rem;
+	height: 32px;
+}
+
+.THIS .slds-accordion__list-item.slds-is-open {
+	padding-bottom: 1rem;
+}
+
+.THIS .slds-truncate.with-wrap{
+  white-space: unset;
+}
+
+.THIS .slds-accordion__section {
+	width: 100%;
+}
+
+.THIS .slds-dropdown {
+	left: auto;
+	right: 0;
+	transform: translateX(0);
+}
+
+.THIS.slds-accordion__list-item {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+.THIS.slds-accordion__list-item.slds-is-open {
+	padding-bottom: 1rem;
+}
+
+.THIS .summary {
+  font-size: .8rem;
+}
+
+.THIS .menuButton .slds-dropdown ul.dropdown__list {
+	margin-left: 0;
+}
+
+.THIS .status {
+	height: 0.5rem;
+	width: 0.5rem;
+	border-radius: 50%;
+	background: #ffe500;
+	border: 0.5px solid lightgray;
+	margin: auto 0.5rem auto 0;
+}
+
+.THIS .status.Rejected,
+.THIS .status.New {
+	background: red;
+}
+
+.THIS .status.Approved {
+	background: #00db00;
+}

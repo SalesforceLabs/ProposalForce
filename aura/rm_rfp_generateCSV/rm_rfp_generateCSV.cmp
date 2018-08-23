@@ -1,0 +1,15 @@
+<aura:component controller="RFP_MainController" implements="force:hasRecordId,force:lightningQuickAction"
+  access="global">
+  <aura:attribute name="error" type="String" default="" />
+  <aura:attribute name="fileId" type="String" default="" />
+  <aura:handler name="init" value="{!this}" action="{!c.init}" />
+  <div class="slds-scope">
+    <aura:if isTrue="{!v.error != '' }">
+      <div class="slds-text-heading_medium">There was an error: </div>
+      <div class="slds-text-heading_medium">{! v.error }</div>
+    </aura:if>
+    <aura:if isTrue="{!v.fileId != '' }">
+      <lightning:fileCard fileId="{!v.fileId}" />
+    </aura:if>
+  </div>
+</aura:component>

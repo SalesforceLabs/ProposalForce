@@ -1,0 +1,67 @@
+<aura:component access="global">
+
+  <aura:attribute name="state" type="Map" />
+  <aura:attribute name="newComplianceResponses" type="List"/>
+  <aura:attribute name="firstRender" type="Boolean" default="true" /> 
+
+  <aura:handler name="init" value="{!this}" action="{!c.init}" />
+  <aura:handler name="render" value="{!this}" action="{!c.render}" />
+  <aura:handler name="change" value="{!v.state.selectedComplianceResponses}" action="{!c.updateNewComplianceResponses}"/>
+
+  <aura:registerEvent name="rm_rfp_action" type="c:rm_rfp_action" />
+  <aura:method name="openModal" action="{!c.openModal}" access="public" />
+
+
+  <div class="slds-scope" aura:id="modal-container">
+    <section tabindex="-1" aura:id="modal" class="slds-modal">
+      <div class="slds-modal__container">
+
+        <header class="slds-modal__header">
+          <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick="{!c.closeModalAndCancel}">
+            <lightning:icon iconName="utility:close" size="small" class="icon" />
+            <span class="slds-assistive-text">Close</span>
+          </button>
+          <h2 class="slds-text-heading_medium slds-hyphenate">Settings Panel</h2>
+        </header>
+        
+        <div class="slds-modal__content slds-p-around_medium">
+          <div class="slds-text-heading_small slds-m-bottom_medium">Compliance Answers</div>
+          <div class="add-container">
+            <div class="slds-form-element slds-size_2-of-3 add-response">
+              <label class="slds-form-element__label">Add Compliance Response</label>
+              
+              <div class="slds-form-element__control">
+                <input aura:id="add-response-input" type="text" class="slds-input" />
+              </div>
+
+            </div>
+            
+            <div onclick="{! c.addResponse }" class="add-icon-container">
+              <lightning:icon iconName="utility:add" size="small" class="add-icon" />
+            
+            </div>
+          
+          </div>
+          <ul>
+            <aura:iteration items="{!v.newComplianceResponses}" var="response">
+              <li class="compliance-response">
+                <button data-responseText="{! response }" onclick="{!c.removeResponse}" class="slds-button slds-button_icon slds-button_icon-inverse close-icon"
+                  title="Close">
+                  <lightning:icon iconName="utility:close" size="x-small" class="close-icon" />
+                  <span class="slds-assistive-text">Close</span>
+                </button>
+                {! response }
+              </li>
+            </aura:iteration>
+          </ul>
+        </div>
+        <footer class="slds-modal__footer">
+          <button class="slds-button slds-button_neutral" onclick="{!c.closeModalAndCancel}">Cancel</button>
+          <button class="slds-button slds-button_brand" onclick="{!c.handleSave}">Save</button>
+        </footer>
+      </div>
+    </section>
+    <div aura:id="backdrop" class="slds-backdrop"></div>
+  </div>
+
+</aura:component>
