@@ -5,9 +5,33 @@
  For full license text, see the LICENSE file in the repo root or https: //opensource.org/licenses/BSD-3-Clause
 -->
 
-# ProposalForce Documentation
+# ProposalForce
 
-## Setup
+### Answer your RFPs quickly and repeatably
+This app allows users to create, search, and categorize RFP/RFI/RFx answers, track the status of RFPs and questions, assign them to users, and generate documents from questions and answers.
+
+* Maintain a searchable, categorized knowledge base as a source of truth for RFP/RFI/RFx answers.
+* Easily search, filter, append and edit knowledge base answers to RFP/RFI/RFx questions, including custom compliance answers.
+* Track progress and generate finished documents.
+
+ProposalForce brings the benefits of Salesforce and the Lightning Platform to the RFP process.
+
+With ProposalForce RFP answers are
+
+* repeatable
+* reportable
+* searchable
+* trackable
+* maintainable
+
+In a single console view and with just a few clicks, users can search and filter trusted knowledge articles, grab the most applicable text, customize it for a particular question, and link it to a question.
+
+Progress bars and status indicators mean managers and users can immediately see the progress on individual questions and on entire RFPs.
+
+RFPs and questions can be assigned to users and in-console chatter feeds aid in collaboration.
+
+
+## Setup and Documentation
 
 ### My Domain
 
@@ -42,16 +66,6 @@ Quick Search > System Permissions > Import Custom Objects
 ### Object and Field Setup
 
 A custom rich text field called “Answer” (API name “Answer__c”) must be added to the Knowledge object in the org. Proper CRUD/FLS permissions for this field must be granted to appropriate users.
-
-### Data Categories package
-
-Due to a known limitation in packages, code referring to Data Categories cannot be packaged into AppExchange apps. Instead, to use Data Categories in ProposalForce 
-
-* navigate to [this GitHub page](https://github.com/ryemcc/DataCategoryTreeBuilder)
-* click the “Deploy to Salesforce” button
-*  follow the install instructions. 
-
-This will install a simple Apex class into the org allowing ProposalForce to query and display a Data Category tree.
 
 ### Custom Metadata
 
